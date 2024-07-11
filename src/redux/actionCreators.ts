@@ -1,5 +1,5 @@
-import modalSlice from "./slices/modal";
+import globalSlice from "./slices/global";
 
 export default {
-	...modalSlice.actions,
+	...globalSlice.actions,
 };
