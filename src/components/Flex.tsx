@@ -6,7 +6,7 @@ interface FlexProps {
 	$justifyContent?: "center" | "start" | "end" | "space-between";
 	$gap?: number | [number, number];
 	$flexWrap?: boolean;
-	$fill?: [boolean, boolean];
+	$fit?: [boolean, boolean];
 	$itemsPerRow?: number;
 	$maxWidth?: number;
 	$textCenter?: boolean;
@@ -25,7 +25,7 @@ const Flex = styled.div<FlexProps>`
 	${({ $justifyContent }) => ($justifyContent ? `justify-content: ${$justifyContent};` : "")}
 	${({ $gap }) => ($gap ? (Array.isArray($gap) ? `column-gap: ${$gap[0]}px; row-gap: ${$gap[1]}px;` : `gap: ${$gap}px;`) : "")}
 	${({ $flexWrap }) => ($flexWrap ? "flex-wrap: wrap;" : "")}
-	${({ $fill }) => ($fill ? `${$fill[0] ? "width: 100%;" : ""}${$fill[1] ? "height: 100%;" : ""}` : "")}
+	${({ $fit }) => ($fit ? `${$fit[0] ? "width: 100%;" : ""}${$fit[1] ? "height: 100%;" : ""}` : "")}
 	${({ $itemsPerRow, $gap }) =>
 		$itemsPerRow
 			? `

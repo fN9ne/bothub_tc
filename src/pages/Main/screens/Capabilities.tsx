@@ -11,7 +11,12 @@ const Capabilities: FC = () => {
 		<div className="container">
 			<Flex $column $alignItems="center" $gap={42}>
 				<H2>Возможности ChatGPT</H2>
-				<Flex $flexWrap $gap={[isMobile ? 0 : isTablet ? 24 : 30, 24]} $fill $itemsPerRow={isMobile ? 1 : isTablet ? 2 : 3}>
+				<Flex
+					$flexWrap
+					$gap={[isMobile ? 0 : isTablet ? 24 : 30, 24]}
+					$fit={[true, false]}
+					$itemsPerRow={isMobile ? 1 : isTablet ? 2 : 3}
+				>
 					<DescriptionCard
 						title="Создание увлекательного контента"
 						text="Вы когда-нибудь мечтали написать интересную книгу или статью, но не знали, с чего начать? ChatGPT отлично справляется с генерацией текстов на любые темы. Опишите ему свою идею - и он создаст увлекательный контент, который захватит внимание читателей."
