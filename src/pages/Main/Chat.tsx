@@ -197,14 +197,16 @@ const formatContent = (content: string) => {
 			return (
 				<>
 					<div className="chat-message__code-header">{language}</div>
-					<SyntaxHighlighter
-						codeTagProps={{ style: { borderRadius: "0 0 4px 4px" } }}
-						key={index}
-						language={language}
-						style={oneDark}
-					>
-						{part.trim().split("\n").slice(1).join("\n")}
-					</SyntaxHighlighter>
+					<div className="chat-message__pre-wrapper">
+						<SyntaxHighlighter
+							codeTagProps={{ style: { borderRadius: "0 0 4px 4px" } }}
+							key={index}
+							language={language}
+							style={oneDark}
+						>
+							{part.trim().split("\n").slice(1).join("\n")}
+						</SyntaxHighlighter>
+					</div>
 				</>
 			);
 		}
