@@ -33,10 +33,28 @@
 
 /* ===== <LAYOUT_STYLES> =================================== */
 
+.mainpage {
+	padding: 120px 0;
+	overflow: hidden;
+
+	@media (max-width: 834px) {
+		padding: 66px 0 80px;
+	}
+
+	@media (max-width: 375px) {
+		padding: 54px 0 80px;
+	}
+}
+
 .wrapper {
 	height: 100%;
 	overflow: auto;
 	background-color: var(--black);
+	padding: 81px 0 0 0;
+
+	@media (max-width: 375px) {
+		padding: 79px 0 0 0;
+	}
 }
 
 .container {
@@ -46,11 +64,11 @@
 	margin: 0 auto;
 
 	@media (max-width: 550px) {
-		padding: 0 20px;
+		padding: 0 16px;
 	}
 }
 
-button div {
+button>div {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -63,7 +81,7 @@ button div {
 	z-index: 100;
 	top: 0;
 	left: 0;
-	width: 100%;
+	width: calc(100% - 14px);
 	backdrop-filter: blur(18px);
 
 	&__wrapper {
@@ -105,7 +123,7 @@ button div {
 		position: fixed;
 		top: 0;
 		left: 0;
-		z-index: 0;
+		z-index: 99;
 		width: 100%;
 		height: 100%;
 		padding: 81px 0 0 0;
@@ -115,6 +133,12 @@ button div {
 			padding: 42px 0;
 			background-color: var(--black);
 			overflow: auto;
+			border-bottom: 1px solid var(--gray3);
+		}
+
+		button {
+			margin: 24px 0 0 0;
+			width: 100%;
 		}
 
 		.navbar {
@@ -322,5 +346,444 @@ button div {
 			flex-direction: column;
 			gap: 4px;
 		}
+	}
+}
+
+.footer {
+	padding: 64px 0;
+	background-color: var(--gray4);
+	border-top: 1px solid var(--gray3);
+	position: relative;
+	overflow: hidden;
+
+	.container {
+		position: relative;
+		z-index: 1;
+	}
+
+	&::before {
+		content: '';
+		width: 100%;
+		aspect-ratio: 1 / 1;
+		position: absolute;
+		top: -135%;
+		left: 50%;
+		translate: -50% -50%;
+		background: radial-gradient(circle, rgba(28, 100, 242, 1) 0%, rgba(8, 16, 39, 0) 70%);
+		opacity: 0.5;
+
+		@media (max-width: 834px) {
+			top: -25%;
+		}
+	}
+
+	&__link {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		transition: 250ms;
+
+		&:hover {
+			opacity: 0.35;
+		}
+	}
+}
+
+.checkbox {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	gap: 8px;
+
+	&-wrapper {
+		background-color: transparent;
+	}
+
+	&__input {
+		display: none;
+	}
+
+	&__custom {
+		width: 20px;
+		height: 20px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 2px;
+		background-color: var(--gray3);
+		border: 1px solid var(--gray1);
+		position: relative;
+		transition: 350ms;
+	}
+
+	svg {
+		width: 12px;
+		height: 10px;
+		scale: 0;
+	}
+
+	&__text {
+		transition: 350ms;
+	}
+
+	&:hover {
+		.checkbox {
+			&__custom {
+				border-color: var(--primary);
+			}
+		}
+	}
+
+	&--checked {
+		.checkbox {
+			&__custom {
+				border-color: var(--primary);
+				background-color: var(--primary);
+
+				svg {
+					scale: 1;
+				}
+			}
+		}
+
+		&:hover {
+			.checkbox {
+				&__custom {
+					border-color: var(--strong);
+					background-color: var(--strong);
+				}
+			}
+		}
+	}
+
+	&--disabled {
+		pointer-events: none;
+		opacity: 0.75;
+		scale: 0.95;
+	}
+
+	&--text-right {
+		flex-direction: row-reverse;
+	}
+}
+
+.empty-line {
+	height: 1em;
+}
+
+.chat {
+	max-width: 741px;
+	height: 600px;
+	flex: 1 1 auto;
+	position: relative;
+
+	&__wrapper {
+		border-radius: 24px;
+		height: 100%;
+		position: relative;
+		padding: 1px;
+		overflow: hidden;
+
+		&::before {
+			content: '';
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(180deg, rgba(54, 63, 84, 1) 15%, rgba(54, 63, 84, 0) 100%);
+			position: absolute;
+			z-index: 0;
+			top: 0;
+			left: 0;
+		}
+
+		&::after {
+			content: "";
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			display: block;
+			animation-timeline: auto;
+			animation-range-start: normal;
+			animation-range-end: normal;
+			width: 100%;
+			height: 100%;
+			z-index: -1;
+			border-radius: 24px;
+			background: linear-gradient(60deg, rgb(148, 28, 242), rgb(28, 178, 242), rgb(55, 65, 81), rgba(55, 65, 81, 0.6), rgb(148, 28, 242), rgba(55, 65, 81, 0.85), rgb(28, 178, 242), rgb(148, 28, 242)) 0% 0% / 300% 300%;
+			animation: 6s ease 0s infinite alternate running rotateBorder;
+		}
+
+		@keyframes rotateBorder {
+			0% {
+				background-position: 0% 50%;
+			}
+
+			50% {
+				background-position: 100% 100%;
+			}
+
+			100% {
+				background-position: 0% 50%;
+			}
+		}
+	}
+
+	&__content {
+		position: relative;
+		z-index: 1;
+		background-color: var(--gray4);
+		border-radius: 24px;
+		height: 100%;
+		padding: 82px 24px 90px;
+		display: flex;
+		flex-direction: column;
+
+		@media (max-width: 375px) {
+			padding: 103px 18px 84px;
+		}
+	}
+
+	&__body {
+		overflow: auto;
+		margin: 0 -18px 0 0;
+		padding: 0 18px 0 0;
+		position: relative;
+		z-index: 1;
+
+		&::-webkit-scrollbar {
+			width: 6px;
+			border-radius: 4px;
+			background-color: var(--gray2);
+
+			&-thumb {
+				background-color: var(--primary);
+				border-radius: 4px;
+
+				&:hover {
+					background-color: var(--strong);
+				}
+
+				&:active {
+					background-color: var(--strongDown);
+				}
+			}
+		}
+	}
+
+	&__list {
+		padding: 12px 0 84px 0;
+		overflow: auto;
+
+		display: flex;
+		flex-direction: column;
+		gap: 22px;
+
+		@media (max-width: 375px) {
+			padding-bottom: 40px;
+		}
+	}
+
+	&__header {
+		background-color: rgba(18, 24, 37, 0.7);
+		border-bottom: 1px solid var(--gray5);
+		backdrop-filter: blur(16px);
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		border-radius: 24px 24px 0 0;
+		padding: 16px 24px 15px;
+	}
+
+	&__bot-avatar {
+		@media (max-width: 375px) {
+			width: 37px;
+			height: 37px;
+		}
+	}
+
+	&__shapes {
+		bottom: 0;
+		left: 0;
+		position: absolute;
+	}
+
+	&__input {
+		width: calc(100% - 24px * 2);
+		z-index: 1;
+		position: absolute;
+		bottom: 24px;
+		left: 24px;
+		cursor: text;
+		max-height: 300px;
+		overflow: hidden;
+		min-height: 66px;
+		background-color: var(--gray4);
+		border: 1px solid var(--gray2);
+		border-radius: 10px;
+		padding: 23px 72px 23px 20px;
+		transition: 250ms;
+
+		@media (max-width: 375px) {
+			bottom: 18px;
+			left: 18px;
+			width: calc(100% - 18px * 2);
+		}
+
+		&:hover {
+			border-color: var(--primary);
+		}
+
+		textarea {
+			display: block;
+			background-color: transparent;
+			width: 100%;
+			font-weight: 500;
+			font-size: 14px;
+			resize: none;
+			min-height: 18px;
+			max-height: calc(300px - 23px * 2);
+			overflow: auto;
+			white-space: pre-wrap;
+			color: var(--white);
+
+			&::-webkit-scrollbar {
+				width: 0;
+			}
+
+			&::placeholder {
+				color: var(--gray1);
+			}
+
+			@media (max-width: 834px) {
+				font-size: 12px;
+			}
+		}
+
+		&--focused {
+			border-color: var(--primary);
+		}
+
+		button {
+			position: absolute;
+			top: 50%;
+			translate: 0 -50%;
+			right: 20px;
+
+			&:active {
+				translate: 0 calc(-50% + 1px);
+			}
+		}
+	}
+
+	&__loader {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: absolute;
+		bottom: 112px;
+		left: 50%;
+		translate: -50% 0;
+	}
+
+	&-message {
+		display: flex;
+		align-items: flex-end;
+		gap: 10px;
+		max-width: 90%;
+
+		&__picture {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		&__content {
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+			max-width: 90%;
+		}
+
+		&__code-header {
+			margin: 12px 0 -8px 0;
+			padding: 14px;
+			background-color: var(--primary);
+			border-radius: 4px;
+		}
+
+		&__body {
+			padding: 14px 16px;
+			background-color: var(--gray2);
+			border-radius: 10px 10px 10px 0;
+
+			pre {
+				border-radius: 0px;
+
+				&::-webkit-scrollbar {
+					height: 6px;
+					border-radius: 4px;
+					background-color: var(--gray2);
+
+					&-thumb {
+						background-color: var(--primary);
+						border-radius: 4px;
+
+						&:hover {
+							background-color: var(--strong);
+						}
+
+						&:active {
+							background-color: var(--strongDown);
+						}
+					}
+				}
+			}
+		}
+
+		&--right {
+			align-self: flex-end;
+			flex-direction: row-reverse;
+			max-width: 100%;
+
+			.chat-message {
+				&__body {
+					border-radius: 10px 10px 0 10px;
+					background-color: var(--primary);
+				}
+
+				&__content {
+					max-width: 80%;
+				}
+			}
+		}
+	}
+}
+
+.getting-started {
+	position: relative;
+
+	.container {
+		position: relative;
+		z-index: 1;
+	}
+
+	&__lights {
+		position: absolute;
+		width: 1800px;
+		height: 800px;
+		top: -20%;
+		left: 5%;
+
+		@media (max-width: 834px) {
+			display: none;
+		}
+	}
+
+	&__bg {
+		opacity: 0.35;
+		position: absolute;
+		z-index: 0;
+		top: -200px;
+		left: 0;
 	}
 }

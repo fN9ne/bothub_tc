@@ -152,6 +152,7 @@ interface TextProps {
 	$size?: keyof typeof theme.fontSizes;
 	$weight?: keyof typeof theme.fontWeights;
 	$fontStyle?: "normal" | "italic";
+	$color?: string;
 }
 
 const getSize = (size: keyof typeof theme.fontSizes) => {
@@ -173,7 +174,7 @@ const getSize = (size: keyof typeof theme.fontSizes) => {
 const getWeight = (weight: keyof typeof theme.fontWeights) => theme.fontWeights[weight];
 
 export const Text = styled.div<TextProps>`
-	color: var(--white);
+	color: ${(props) => (props.color ? props.color : "var(--white)")};
 	font-weight: ${(props) => getWeight(props.$weight || "regular")};
 	${(props) => getSize(props.$size || "m")};
 	font-style: ${(props) => props.$fontStyle || "normal"};

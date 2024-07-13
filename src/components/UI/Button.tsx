@@ -5,7 +5,7 @@ interface ButtonProps {
 	$icon?: React.ReactNode;
 	$large?: boolean;
 	$circle?: boolean;
-	onClick?: () => void;
+	onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 	$iconOrientation?: "left" | "right";
 	children?: React.ReactNode;
 }
@@ -14,7 +14,7 @@ const StyledButton = styled.button<ButtonProps>`
 	background-color: var(--primary);
 	height: ${({ $icon, $large }) => ($icon ? ($large ? "48px" : "38px") : $large ? "52px" : "40px")};
 	${({ $icon, $large }) => ($icon ? `width: ${$large ? "48px" : "38px"};` : "")}
-	padding: 0 ${({ $icon }) => ($icon ? "0" : "18px")};
+	padding: 0 ${({ $icon, $large }) => ($icon ? "0" : $large ? "24px" : "18px")};
 	border-radius: ${({ $circle }) => ($circle ? "26px" : "8px")};
 	box-shadow: inset 0px 1px 1px 0px rgba(255, 255, 255, 0.4);
 	font-weight: 500;
@@ -43,6 +43,7 @@ const StyledButton = styled.button<ButtonProps>`
 
 	&:active {
 		background-color: var(--strongDown);
+		translate: 0 1px;
 	}
 `;
 

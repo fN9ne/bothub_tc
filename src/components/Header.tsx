@@ -112,6 +112,7 @@ const Header: FC = () => {
 						<div className="header-menu__wrapper">
 							<div className="container">
 								<Navbar linkList={linkList} />
+								{isMobile && <Button>Авторизация</Button>}
 							</div>
 						</div>
 					</m.div>
